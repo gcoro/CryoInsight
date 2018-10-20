@@ -34,7 +34,7 @@ export default class Header extends React.Component {
                         fontWeight: 'bold', fontSize: '30px', marginTop: '50px', marginLeft: '10px'
                     }}>CryoInsight</p>
                 </div>
-                <div>
+                <div style={{display:'flex',alignItems:'center'}}>
                     <div id='search-bar' style={{ height: '120px' }}>
                         <div >
                             <input id='input-location' name='city' onKeyDown={(e) => this.onKeyUpHandler(e)} style={{
@@ -53,7 +53,7 @@ export default class Header extends React.Component {
                             onChange={this.props.handleInputChange}></input>
                     </div>
                     or
-                <img onClick={this.props.findMyLocation} src={location}
+                <img title='Find my location' onClick={this.props.findMyLocation} src={location}
                         style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
                 </div>
             </div>

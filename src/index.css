@@ -770,3 +770,8 @@ code {
     outline: none;
     cursor: pointer
 }
+
+/* HOVER LINK */
+#sidebar button:hover {
+  color: blue;
+}

@@ -24,6 +24,7 @@ export default class MapContainer extends React.Component {
 		if(this.props.glaciers) {
 			this.props.glaciers.forEach(element => {
 				const marker = L.marker([element._source.location.lat, element._source.location.lon]).addTo(this.myMap);
+				marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
 			});
 		}
 	}

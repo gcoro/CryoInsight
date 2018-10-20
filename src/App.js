@@ -13,7 +13,8 @@ class App extends React.Component {
       infoModalIsOpen: false,
       city: undefined,
       adminDistrict: undefined,
-      coordinates: undefined
+      coordinates: undefined,
+      userLocation:undefined,
     }
   }
 
@@ -42,10 +43,29 @@ class App extends React.Component {
     this.forceUpdate();
   }
 
+  findMyLocation(){
+      console.log("i'm finding your location..")
+      if(!navigator || !navigator.geolocation) return;
+      let f = pos => {
+        console.log(pos)
+        this.setState({userLocation:{
+            accuracy:pos.coords.accuracy,
+            latitude:pos.coords.latitude,
+            longitude:pos.coords.longitude
+        }})
+      }
+      
+      let e = function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+      navigator.geolocation.getCurrentPosition(f,e)
+  }
+
   render() {
     return (<>
       <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
-        handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)} />
+        handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)} 
+        findMyLocation={this.findMyLocation.bind(this)}/>
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
       <MapContainer coordinates={this.state.coordinates} />
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}

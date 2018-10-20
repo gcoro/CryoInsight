@@ -9,9 +9,9 @@ class App extends React.Component {
     super();
     this.state = {
       drawerIsOpen: false,
-      modalIsOpen: false
+      modalIsOpen: false,
+      city: undefined
     }
-    this.handleOpenModal = this.handleOpenModal.bind(this);
   }
 
   handleOpenDrawer() {
@@ -24,9 +24,14 @@ class App extends React.Component {
     else this.setState({ modalIsOpen: true });
   }
 
+  handleInputChange({ target }) {
+    this.setState({ city: target.value });
+  }
+
   render() {
     return (<>
-      <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen} />
+      <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
+        handleInputChange={this.handleInputChange.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
       <MapContainer />
       {this.state.modalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}

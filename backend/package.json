@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for glacier handling and api calls",
+  "main": "index.js",
+  "author": "cryoinsight",
+  "license": "MIT",
+  "dependencies": {
+    "csvtojson": "^2.0.8",
+    "elasticsearch": "^15.1.1",
+    "hapi": "^17.6.0"
+  }
+}

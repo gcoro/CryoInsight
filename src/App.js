@@ -13,7 +13,7 @@ class App extends React.Component {
       infoModalIsOpen: false,
       city: undefined,
       adminDistrict: undefined,
-      targetCoordinates: undefined
+      coordinates: undefined
     }
   }
 
@@ -34,9 +34,12 @@ class App extends React.Component {
   async handleSearch() {
     const response = await axios.get(`http://dev.virtualearth.net/REST/v1/Locations?locality=${this.state.city}&adminDistrict=${this.state.adminDistrict || ''}&key=Atn87LNT3ti0O7t2_xkALsJ3XcpZs8oCEP0C1Ppj3j13GBNEqtEaeWXteOkTf9rI`)
     console.log(response.data.resourceSets[0].resources); // this are ALL the matching resulting cities
-    this.setState({
-      targetCoordinates: response.data.resourceSets[0].resources[0].point.coordinates
-    });
+    if (response.data.resourceSets[0].resources) {
+      this.setState({
+        coordinates: response.data.resourceSets[0].resources[0].point.coordinates
+      });
+    }
+    this.forceUpdate();
   }
 
   render() {
@@ -44,7 +47,7 @@ class App extends React.Component {
       <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
-      <MapContainer />
+      <MapContainer coordinates={this.state.coordinates} />
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
     </>
     );

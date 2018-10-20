@@ -53,7 +53,7 @@ export default class Header extends React.Component {
                             onChange={this.props.handleInputChange}></input>
                     </div>
                     or
-                <img title='Find my location' onClick={this.props.findMyLocation} src={location}
+                <img title='Find my location' alt='icon-geolocalize' onClick={this.props.findMyLocation} src={location}
                         style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
                 </div>
             </div>

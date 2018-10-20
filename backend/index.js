@@ -50,7 +50,7 @@ const searchGlacier = async (request, response) => {
 
 const init = async () => {
 	await server.start();
-	const csvFilePath = '/home/davide/SpaceApp/cryoinsight-project/backend/wgi_feb2012.csv';
+	const csvFilePath = '~/Desktop/cryoinsight-project/backend/wgi_feb2012.csv';
 	const csv = require('csvtojson');
 	const jsonObj = await csv().fromFile(csvFilePath);
 	var client = new elasticsearch.Client({

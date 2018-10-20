@@ -18,15 +18,13 @@ export default class MapContainer extends React.Component {
 	}
 
 	componentDidUpdate() {
-		console.log('ee');
 		this.myMap.setView(new L.LatLng(this.props.coordinates[0],this.props.coordinates[1]), 100);
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
 		if (!this.props.coordinates && nextProps.coordinates) return true;
 		else if (!this.props.coordinates && !nextProps.coordinates) return false;
-		else return (this.props.coordinates[0] !== nextProps.coordinates[0]) ||
-			(this.props.coordinates[1] !== nextProps.coordinates[1]);
+		else return true;
 	}
 
 	render() {

@@ -24,11 +24,20 @@ export default class InfoModal extends React.Component {
 						left: '50%',
 						transform: 'translate(-50%, -50%)',
 						zIndex: '1002',
-						backgroundColor: 'white'
+                        backgroundColor: 'white',
+                        maxHeight:'30em',
+                        width:'35em',
+                        overflow:'scroll',
+                        overflowX:'hidden',
+                        padding:'30px',
+                        paddingLeft:'30px',
+                        boxShadow:'10px 5px 20px 6px #0000007a'
 					}}
 				>
-					<Modal.Header closeButton />
-					<Modal.Body>
+					<Modal.Header style={{float:'right',marginBottom:'20px'}} >
+                    <i className="far fa-times-circle" style={{color:'#238ef9',fontSize:'2.5em'}}></i>
+                    </Modal.Header>
+					<Modal.Body style={{clear:'both',textAlign:'justify'}}>
 						<div><p>The cryosphere is made up of every body of water that 
 							is frozen. It makes up 2.1% of Earths water reservoirs 
 							and it contains 75% of the worlds freshwater. In its 

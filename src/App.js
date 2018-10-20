@@ -13,7 +13,8 @@ class App extends React.Component {
       infoModalIsOpen: false,
       city: undefined,
       adminDistrict: undefined,
-      targetCoordinates: undefined
+      targetCoordinates: undefined,
+      userLocation:undefined,
     }
   }
 
@@ -40,7 +41,21 @@ class App extends React.Component {
   }
 
   findMyLocation(){
-      console.log("im finding your location..")
+      console.log("i'm finding your location..")
+      if(!navigator || !navigator.geolocation) return;
+      let f = pos => {
+        console.log(pos)
+        this.setState({userLocation:{
+            accuracy:pos.coords.accuracy,
+            latitude:pos.coords.latitude,
+            longitude:pos.coords.longitude
+        }})
+      }
+      
+      let e = function error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+      }
+      navigator.geolocation.getCurrentPosition(f,e)
   }
 
   render() {

@@ -10,7 +10,8 @@ export default class Header extends React.Component {
 				color: 'white', background: 'none',
 				border: 'none', outline: 'none', fontSize: '30px', paddingLeft: '10px'
 			}}>
-				<i className="fas fa-chevron-circle-right"></i>
+				{this.props.drawerIsOpen && <i className="fas fa-chevron-circle-down"></i> || 
+                    <i className="fas fa-chevron-circle-right"></i>}
 			</button>
 			<p style={{
 				fontFamily: '\'Niramit\', sans-serif', color: 'white',

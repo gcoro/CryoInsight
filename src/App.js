@@ -18,7 +18,7 @@ class App extends React.Component {
 
   render() {
     return (<>
-      <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} />
+      <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen} />
       {this.state.drawerIsOpen && <Drawer />}
       <MapContainer />
     </>

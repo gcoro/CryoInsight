@@ -34,11 +34,11 @@ export default class MapContainer extends React.Component {
 		if (this.props.glaciers) {
 			this.props.glaciers.forEach(element => {
 				const marker = L.marker([+element._source.location.lat, +element._source.location.lon], { icon: iconDefault }).addTo(this.myMap);
-				marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
+				marker.bindPopup(`<div><strong>Name:</strong> ${element._source.name || element._source.wgi_glacier_id}<br/><br/><strong>Elevation:</strong> ${element._source.min_elev}mt ~ ${element._source.max_elev}mt<br/></div>`);
 			});
 		}
 		if (this.props.coordinates) {
-			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 100);
+			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 10);
 		}
 	}
 

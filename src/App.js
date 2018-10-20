@@ -35,10 +35,15 @@ class App extends React.Component {
     console.log(response);
   }
 
+  findMyLocation(){
+      console.log("im finding your location..")
+  }
+
   render() {
     return (<>
       <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
-        handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)} />
+        handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)} 
+        findMyLocation={this.findMyLocation.bind(this)}/>
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
       <MapContainer />
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}

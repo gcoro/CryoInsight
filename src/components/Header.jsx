@@ -1,5 +1,6 @@
 import React from 'react';
 const logo = require('../assets/images/logo.svg');
+const location = require('../assets/images/location.png');
 
 export default class Header extends React.Component {
 
@@ -35,6 +36,9 @@ export default class Header extends React.Component {
                     }} placeholder='City name' onChange={this.props.handleInputChange} />
                     <i className="fas fa-search" style={{ position: 'relative', right: '35px', cursor: 'pointer' }}
                         onClick={this.props.handleSearch} />
+                    or
+                    <img onClick={this.props.findMyLocation} src={location} 
+                    style={{height:'1.6em',marginLeft:'1em',marginRight:'1em',cursor:'pointer'}}/>
                 </div>
             </div>
         </>;

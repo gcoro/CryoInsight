@@ -13,12 +13,11 @@ export default class InfoModal extends React.Component {
 
 	render() {
 		return (
-			<>
 				<Modal
-					{...this.props}
 					show={this.state.show}
 					dialogClassName='custom-modal'
 					bsSize='lg'
+					onHide={() => this.props.handleOpenModal('close')}
 					style={{
 						position: 'fixed',
 						top: '50%',
@@ -33,7 +32,6 @@ export default class InfoModal extends React.Component {
 						<div>Modal content</div>
 					</Modal.Body>
 				</Modal>
-			</>
 		);
 	}
 }

@@ -24,16 +24,12 @@ class App extends React.Component {
     else this.setState({ modalIsOpen: true });
   }
 
-  createModal() {
-    return <InfoModal show={true} />;
-  }
-
   render() {
     return (<>
       <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} />
-      {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal} />}
+      {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
       <MapContainer />
-      {this.state.modalIsOpen && this.createModal()}
+      {this.state.modalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
     </>
     );
   }

@@ -3,8 +3,7 @@ const csvtojsonV2 = require("csvtojson");
 var elasticsearch = require('elasticsearch');
 
 const server = Hapi.server({
-	port: 4000,
-	host: 'localhost'
+	port: 4000, routes: { cors: { origin: ['http://*'] } }
 });
 
 server.route({
@@ -25,6 +24,7 @@ const searchGlacier = async (request, response) => {
 		return await client.search({
 			index: 'glaciers',
 			body: {
+				"from": 0, "size": request.payload.size || 1000,
 				"query": {
 					"bool": {
 						"must": {
@@ -40,7 +40,20 @@ const searchGlacier = async (request, response) => {
 							}
 						}
 					}
-				}
+				},
+				"sort": [
+					{
+						"_geo_distance": {
+							"location": {
+								"lat": request.payload.latitude,
+								"lon": request.payload.longitude
+							},
+							"order": "asc",
+							"unit": "km",
+							"distance_type": "plane"
+						}
+					}
+				]
 			}
 		});
 	} catch (error) {
@@ -50,7 +63,7 @@ const searchGlacier = async (request, response) => {
 
 const init = async () => {
 	await server.start();
-	const csvFilePath = '~/Desktop/cryoinsight-project/backend/wgi_feb2012.csv';
+	const csvFilePath = '/home/davide/SpaceApp/cryoinsight-project/backend/wgi_feb2012.csv';
 	const csv = require('csvtojson');
 	const jsonObj = await csv().fromFile(csvFilePath);
 	var client = new elasticsearch.Client({

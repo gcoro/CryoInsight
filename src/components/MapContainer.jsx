@@ -1,5 +1,18 @@
 import React from 'react';
 const L = require('leaflet');
+const iconRetinaUrl = require('../assets/images/marker-icon-2x.png');
+const iconUrl = require('../assets/images/marker-icon.png');
+const shadowUrl = require('../assets/images/marker-shadow.png');
+const iconDefault = L.icon({
+	iconRetinaUrl,
+	iconUrl,
+	shadowUrl,
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	tooltipAnchor: [16, -28],
+	shadowSize: [41, 41]
+});
 
 // pure component is used to avoid unnecessary updates
 export default class MapContainer extends React.Component {
@@ -18,14 +31,14 @@ export default class MapContainer extends React.Component {
 	}
 
 	componentDidUpdate() {
-		if (this.props.coordinates) {
-			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 100);
-		}
-		if(this.props.glaciers) {
+		if (this.props.glaciers) {
 			this.props.glaciers.forEach(element => {
-				const marker = L.marker([element._source.location.lat, element._source.location.lon]).addTo(this.myMap);
+				const marker = L.marker([+element._source.location.lat, +element._source.location.lon], { icon: iconDefault }).addTo(this.myMap);
 				marker.bindPopup("<b>Hello world!</b><br>I am a popup.");
 			});
+		}
+		if (this.props.coordinates) {
+			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 100);
 		}
 	}
 

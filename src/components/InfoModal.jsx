@@ -29,7 +29,7 @@ export default class InfoModal extends React.Component {
 					width: '70%',
 					overflow: 'scroll',
 					overflowX: 'hidden',
-					padding: '30px',
+					paddingRight: '30px',
 					paddingLeft: '30px',
 					boxShadow: '10px 5px 20px 6px #0000007a',
 					height: '60%',

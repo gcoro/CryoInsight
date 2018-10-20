@@ -489,7 +489,7 @@ code {
 /* Default icon URLs */
 
 .leaflet-default-icon-path {
-    background-image: url(./assets/images/marker-icon.png);
+    background-image: url(assets/images/marker-icon.png);
 }
 
 /* attribution and scale controls */

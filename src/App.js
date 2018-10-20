@@ -14,6 +14,7 @@ class App extends React.Component {
       city: undefined,
       adminDistrict: undefined,
       coordinates: undefined,
+      glaciers: undefined
     }
   }
 
@@ -45,33 +46,38 @@ class App extends React.Component {
       longitude: this.state.coordinates[1]
     }
     const glaciers = await axios.post('http://10.0.1.200:4000/search', payload);
-    console.log(glaciers);
+    console.log(glaciers.data.hits.hits);
+    this.setState({
+      glaciers: glaciers.data.hits.hits
+    });
   }
 
-  findMyLocation(){
-      console.log("i'm finding your location..")
-      if(!navigator || !navigator.geolocation) return;
-      let f = pos => {
-        console.log(pos)
-        this.setState({coordinates:[
-            pos.coords.latitude,
-            pos.coords.longitude
-        ]})
-      }
-      
-      let e = function error(err) {
-        console.warn(`ERROR(${err.code}): ${err.message}`);
-      }
-      navigator.geolocation.getCurrentPosition(f,e)
+  findMyLocation() {
+    console.log("i'm finding your location..")
+    if (!navigator || !navigator.geolocation) return;
+    let f = pos => {
+      console.log(pos)
+      this.setState({
+        coordinates: [
+          pos.coords.latitude,
+          pos.coords.longitude
+        ]
+      })
+    }
+
+    let e = function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    navigator.geolocation.getCurrentPosition(f, e)
   }
 
   render() {
     return (<>
       <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
-        handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)} 
-        findMyLocation={this.findMyLocation.bind(this)}/>
+        handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
+        findMyLocation={this.findMyLocation.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
-      <MapContainer coordinates={this.state.coordinates} />
+      <MapContainer coordinates={this.state.coordinates} glaciers={this.state.glaciers}/>
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
     </>
     );

@@ -18,13 +18,21 @@ export default class MapContainer extends React.Component {
 	}
 
 	componentDidUpdate() {
-		this.myMap.setView(new L.LatLng(this.props.coordinates[0],this.props.coordinates[1]), 100);
+		if (this.props.coordinates) {
+			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 100);
+		}
+		if(this.props.glaciers) {
+			this.props.glaciers.forEach(element => {
+				const marker = L.marker([element._source.location.lat, element._source.location.lon]).addTo(this.myMap);
+			});
+		}
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (!this.props.coordinates && nextProps.coordinates) return true;
+		/*if ((!this.props.coordinates && nextProps.coordinates) || (!this.props.glaciers && nextProps.glaciers)) return true;
 		else if (!this.props.coordinates && !nextProps.coordinates) return false;
-		else return true;
+		else return true;*/
+		return true;
 	}
 
 	render() {

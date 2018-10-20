@@ -14,7 +14,6 @@ class App extends React.Component {
       city: undefined,
       adminDistrict: undefined,
       coordinates: undefined,
-      userLocation:undefined,
     }
   }
 
@@ -54,11 +53,10 @@ class App extends React.Component {
       if(!navigator || !navigator.geolocation) return;
       let f = pos => {
         console.log(pos)
-        this.setState({userLocation:{
-            accuracy:pos.coords.accuracy,
-            latitude:pos.coords.latitude,
-            longitude:pos.coords.longitude
-        }})
+        this.setState({coordinates:[
+            pos.coords.latitude,
+            pos.coords.longitude
+        ]})
       }
       
       let e = function error(err) {

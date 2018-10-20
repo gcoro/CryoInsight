@@ -34,10 +34,8 @@ export default class InfoModal extends React.Component {
                         boxShadow:'10px 5px 20px 6px #0000007a'
 					}}
 				>
-					<Modal.Header style={{float:'right',marginBottom:'20px'}} >
-                    <i className="far fa-times-circle" style={{color:'#238ef9',fontSize:'2.5em'}}></i>
-                    </Modal.Header>
-					<Modal.Body style={{clear:'both',textAlign:'justify'}}>
+					<Modal.Header closeButton style={{float:'right',marginBottom:'20px'}}/>
+					<Modal.Body style={{clear:'both'}}>
 						<div><p>The cryosphere is made up of every body of water that 
 							is frozen. It makes up 2.1% of Earths water reservoirs 
 							and it contains 75% of the worlds freshwater. In its 

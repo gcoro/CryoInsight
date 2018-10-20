@@ -35,12 +35,18 @@ class App extends React.Component {
   async handleSearch() {
     const response = await axios.get(`http://dev.virtualearth.net/REST/v1/Locations?locality=${this.state.city}&adminDistrict=${this.state.adminDistrict || ''}&key=Atn87LNT3ti0O7t2_xkALsJ3XcpZs8oCEP0C1Ppj3j13GBNEqtEaeWXteOkTf9rI`)
     console.log(response.data.resourceSets[0].resources); // this are ALL the matching resulting cities
-    if (response.data.resourceSets[0].resources) {
+    if (response.data.resourceSets[0].resources[0]) {
       this.setState({
         coordinates: response.data.resourceSets[0].resources[0].point.coordinates
       });
     }
-    this.forceUpdate();
+    const payload = {
+      distance: '100km',
+      latitude: this.state.coordinates[0],
+      longitude: this.state.coordinates[1]
+    }
+    const glaciers = await axios.post('http://10.0.1.200:4000/search', payload);
+    console.log(glaciers);
   }
 
   findMyLocation(){

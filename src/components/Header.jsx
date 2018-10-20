@@ -32,7 +32,7 @@ export default class Header extends React.Component {
                     <p style={{
                         fontFamily: '\'Niramit\', sans-serif', color: 'white',
                         fontWeight: 'bold', fontSize: '30px', marginTop: '50px', marginLeft: '10px'
-                    }}>Cryoinsight</p>
+                    }}>CryoInsight</p>
                 </div>
                 <div>
                     <div id='search-bar' style={{ height: '120px' }}>

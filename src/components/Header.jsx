@@ -41,7 +41,6 @@ export default class Header extends React.Component {
                                 height: '35px', marginRight: '10px', marginTop: '40px',
                                 paddingRight: '30px', paddingLeft: '5px'
                             }} placeholder='City' onChange={this.props.handleInputChange}
-                                onBlur={(e) => this.toggleDistrict(e, 'hide')}
                                 onFocus={(e) => this.toggleDistrict(e, 'show')} />
                             <i className="fas fa-search" style={{ position: 'relative', right: '35px', cursor: 'pointer' }}
                                 onClick={this.props.handleSearch} />

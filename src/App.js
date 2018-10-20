@@ -10,7 +10,7 @@ class App extends React.Component {
     super();
     this.state = {
       drawerIsOpen: false,
-      modalIsOpen: false,
+      infoModalIsOpen: false,
       city: undefined
     }
   }
@@ -21,8 +21,8 @@ class App extends React.Component {
   }
 
   handleOpenModal(action) {
-    if (action === 'close') this.setState({ modalIsOpen: false });
-    else this.setState({ modalIsOpen: true });
+    if (action === 'close') this.setState({ infoModalIsOpen: false });
+    else this.setState({ infoModalIsOpen: true });
   }
 
   handleInputChange({ target }) {
@@ -41,7 +41,7 @@ class App extends React.Component {
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
       <MapContainer />
-      {this.state.modalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
+      {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
     </>
     );
   }

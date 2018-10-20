@@ -5,8 +5,13 @@ const location = require('../assets/images/location.png');
 export default class Header extends React.Component {
 
     onKeyUpHandler(event) {
-        let code = event.which || event.keyCode;
+        const code = event.which || event.keyCode;
         if (code === 13) this.props.handleSearch();
+    }
+
+    toggleDistrict(e, action) {
+        if (action === 'show') document.getElementById('input-district').style.display = 'block';
+        else document.getElementById('input-district').style.display = 'none';
     }
 
     render() {
@@ -27,18 +32,29 @@ export default class Header extends React.Component {
                     <p style={{
                         fontFamily: '\'Niramit\', sans-serif', color: 'white',
                         fontWeight: 'bold', fontSize: '30px', marginTop: '50px', marginLeft: '10px'
-                    }}>CryoInsight</p>
+                    }}>Cryoinsight</p>
                 </div>
-                <div id='search-bar'>
-                    <input id='input-location' onKeyDown={e => this.onKeyUpHandler(e)} style={{
-                        height: '35px', marginRight: '10px',
-                        paddingRight: '30px', paddingLeft: '5px'
-                    }} placeholder='City name' onChange={this.props.handleInputChange} />
-                    <i className="fas fa-search" style={{ position: 'relative', right: '35px', cursor: 'pointer' }}
-                        onClick={this.props.handleSearch} />
+                <div>
+                    <div id='search-bar' style={{ height: '120px' }}>
+                        <div >
+                            <input id='input-location' name='city' onKeyDown={(e) => this.onKeyUpHandler(e)} style={{
+                                height: '35px', marginRight: '10px', marginTop: '40px',
+                                paddingRight: '30px', paddingLeft: '5px'
+                            }} placeholder='City' onChange={this.props.handleInputChange}
+                                onFocus={(e) => this.toggleDistrict(e, 'show')} />
+                            <i className="fas fa-search" style={{ position: 'relative', right: '35px', cursor: 'pointer' }}
+                                onClick={this.props.handleSearch} />
+                        </div>
+                        <input id='input-district' name='adminDistrict' placeholder='District' hidden={true} style={{
+                            position: 'relative', top: '10px',
+                            height: '35px', marginRight: '10px',
+                            paddingRight: '30px', paddingLeft: '5px', zIndex: '1003'
+                        }} onBlur={(e) => this.toggleDistrict(e, 'hide')}
+                            onChange={this.props.handleInputChange}></input>
+                    </div>
                     or
-                    <img onClick={this.props.findMyLocation} src={location} 
-                    style={{height:'1.6em',marginLeft:'1em',marginRight:'1em',cursor:'pointer'}}/>
+                <img onClick={this.props.findMyLocation} src={location}
+                        style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
                 </div>
             </div>
         </>;

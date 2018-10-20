@@ -11,7 +11,9 @@ class App extends React.Component {
     this.state = {
       drawerIsOpen: false,
       infoModalIsOpen: false,
-      city: undefined
+      city: undefined,
+      adminDistrict: undefined,
+      targetCoordinates: undefined
     }
   }
 
@@ -26,13 +28,15 @@ class App extends React.Component {
   }
 
   handleInputChange({ target }) {
-    this.setState({ city: target.value });
-    console.log(this.state.city);
+    this.setState({ [target.name]: target.value });
   }
 
   async handleSearch() {
-    const response = await axios.get(`http://dev.virtualearth.net/REST/v1/Locations?locality=${this.state.city}&key=Atn87LNT3ti0O7t2_xkALsJ3XcpZs8oCEP0C1Ppj3j13GBNEqtEaeWXteOkTf9rI`)
-    console.log(response);
+    const response = await axios.get(`http://dev.virtualearth.net/REST/v1/Locations?locality=${this.state.city}&adminDistrict=${this.state.adminDistrict || ''}&key=Atn87LNT3ti0O7t2_xkALsJ3XcpZs8oCEP0C1Ppj3j13GBNEqtEaeWXteOkTf9rI`)
+    console.log(response.data.resourceSets[0].resources); // this are ALL the matching resulting cities
+    this.setState({
+      targetCoordinates: response.data.resourceSets[0].resources[0].point.coordinates
+    });
   }
 
   findMyLocation(){

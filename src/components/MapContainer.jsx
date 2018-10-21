@@ -33,6 +33,8 @@ export default class MapContainer extends React.Component {
 
 	myMap;
 
+    openEvolution(){}
+
 	componentDidMount() {
 		this.myMap = L.map('mapid');
 		this.myMap.setView([51.505, -0.09], 13);
@@ -64,8 +66,14 @@ export default class MapContainer extends React.Component {
 			}).addTo(this.myMap);
 			if (this.props.glaciers) {
 				this.props.glaciers.forEach(element => {
+                    let content = L.DomUtil.create('div', 'content');
+                    content.innerHTML = `<strong>Name:</strong> ${element._source.name || element._source.wgi_glacier_id}<br/><br/><strong>Elevation:</strong> ${element._source.min_elev}mt ~ ${element._source.max_elev}mt<br/><a href=# >View evolution in time</a>`
+                    L.DomEvent.addListener(content, 'click', event =>{
+                        this.props.showEvolution(element)
+                    });
+                    let popup = L.popup().setContent(content);
 					const marker = L.marker([+element._source.location.lat, +element._source.location.lon], { icon: iconDefault }).addTo(this.myMap);
-					marker.bindPopup(`<div><strong>Name:</strong> ${element._source.name || element._source.wgi_glacier_id}<br/><br/><strong>Elevation:</strong> ${element._source.min_elev}mt ~ ${element._source.max_elev}mt<br/></div>`);
+					marker.bindPopup(popup);
 				});
 			}
 		}

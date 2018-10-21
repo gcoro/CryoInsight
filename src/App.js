@@ -14,7 +14,8 @@ class App extends React.Component {
       city: undefined,
       adminDistrict: undefined,
       coordinates: undefined,
-      glaciers: undefined
+      glaciers: undefined,
+      LandsatImagesUrls:undefined,
     }
   }
 
@@ -77,6 +78,20 @@ class App extends React.Component {
       glaciers: glaciers.data.hits.hits
     });
   }
+  async showEvolution(e){
+      let coord = e._source.location;
+      let LandsatImagesUrls = [];
+      try{
+      for(let i = 1; i<=5; ++i){
+        let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery?lon=${coord.lon}&lat=${coord.lat}&date=${2018-i}-05-01&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`)
+        LandsatImagesUrls.push(a.data)
+      }
+      this.setState({LandsatImagesUrls})
+    }
+    catch(err) {
+        console.log(err)
+    }
+  }
 
   render() {
     return (<>
@@ -84,7 +99,8 @@ class App extends React.Component {
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
         findMyLocation={this.findMyLocation.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
-      <MapContainer coordinates={this.state.coordinates} glaciers={this.state.glaciers} />
+      {this.state.LandsatImagesUrls && alert("url recuperati")}
+      <MapContainer coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)}/>
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
     </>
     );

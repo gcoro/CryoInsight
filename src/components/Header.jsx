@@ -38,7 +38,6 @@ export default class Header extends React.Component {
 
 					<img title='Find my location' alt='icon-geolocalize' onClick={this.props.findMyLocation} src={location}
 						style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
-					or
                     <div id='search-bar' style={{ height: '120px', marginLeft: '1.2em' }}>
 						<div >
 							<input id='input-location' name='city' onKeyDown={(e) => this.onKeyUpHandler(e)} style={{

@@ -199,10 +199,6 @@ code {
     bottom: 0;
 }
 
-.leaflet-left {
-    right: 0;
-}
-
 .leaflet-control {
     float: left;
     clear: both;

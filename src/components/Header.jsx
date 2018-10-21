@@ -24,8 +24,7 @@ export default class Header extends React.Component {
 					color: 'white', background: 'none',
 					border: 'none', outline: 'none', fontSize: '30px', paddingLeft: '10px'
 				}}>
-					{(this.props.drawerIsOpen && <i className="fas fa-chevron-circle-down"></i>) ||
-						<i className="fas fa-chevron-circle-right"></i>}
+						<i className="fas fa-info-circle"></i>
 				</button>
 				<div id='title' style={{ display: 'flex', flexDirection: 'row' }}>
 					<img alt='logo' src={logo}></img>

@@ -113,7 +113,12 @@ class App extends React.Component {
 
   render() {
     return (<>{this.state.isLoading && <img src={loader} alt='loader gif'
-      style={{ position: 'absolute', top: '50%', left: '50%', zIndex: '1005', height: '100px', width: '100px' }} />}
+      style={{
+        'position': 'absolute',
+        'top': '50%',
+        'left': '50%',
+        'transform': 'translate(-50%, -50%)', zIndex: '1005', height: '100px', width: '100px'
+      }} />}
       <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
         findMyLocation={this.findMyLocation.bind(this)} />

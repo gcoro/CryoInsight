@@ -39,17 +39,16 @@ class App extends React.Component {
       this.setState({
         coordinates: response.data.resourceSets[0].resources[0].point.coordinates
       });
+      const payload = {
+        distance: '100km',
+        latitude: this.state.coordinates[0],
+        longitude: this.state.coordinates[1]
+      }
+      this.findGlaciers(payload);
     }
-    const payload = {
-      distance: '100km',
-      latitude: this.state.coordinates[0],
-      longitude: this.state.coordinates[1]
-    }
-    this.findGlaciers(payload);
   }
 
   findMyLocation() {
-    console.log("i'm finding your location..")
     if (!navigator || !navigator.geolocation) return;
     let f = pos => {
       this.setState({

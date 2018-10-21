@@ -39,8 +39,11 @@ export default class LandsatModal extends React.Component {
 			>
 				<Modal.Header closeButton style={{ float: 'right', marginBottom: '10px' }} />
 				<Modal.Body style={{ clear: 'both' }}>
+                {console.log(this.props.landsatImagesUrls)}
 					{this.props.landsatImagesUrls.map(e =>
-                        <img src={e.url}/>
+                        <span><p>{e.date.split("T")[0]}</p>
+                        <img src={e.url}/></span>
+                    
                     )}
 				</Modal.Body>
 			</Modal>

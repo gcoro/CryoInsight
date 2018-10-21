@@ -50,7 +50,7 @@ export default class MapContainer extends React.Component {
 		if (this.props.coordinates) {
 			this.myMap.remove();
 			this.myMap = L.map('mapid');
-			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 10);
+			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), this.props.radius <= 100 ? 9 : 8);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
 				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 				maxZoom: 18,
@@ -61,7 +61,7 @@ export default class MapContainer extends React.Component {
 			L.circle([this.props.coordinates[0], this.props.coordinates[1]], {
 				color: 'blue',
 				fillOpacity: 0,
-				radius: 100000
+				radius: this.props.radius * 1000
 			}).addTo(this.myMap);
 			if (this.props.glaciers) {
 				this.props.glaciers.forEach(element => {
@@ -79,7 +79,7 @@ export default class MapContainer extends React.Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (!this.props.coordinates && nextProps.coordinates || !this.props.coordinates || (!this.props.glaciers && nextProps.glaciers) || this.props.glaciers.length !== nextProps.glaciers.length || (nextProps.coordinates.toString() !== this.props.coordinates.toString()))
+		if (this.props.radius !== nextProps.radius || !this.props.coordinates && nextProps.coordinates || !this.props.coordinates || (!this.props.glaciers && nextProps.glaciers) || this.props.glaciers.length !== nextProps.glaciers.length || (nextProps.coordinates.toString() !== this.props.coordinates.toString()))
 			return true;
 		else return false;
 	}
@@ -87,6 +87,6 @@ export default class MapContainer extends React.Component {
 	render() {
 		return (<div className='map-container' id="map-container">
 			<div style={{ 'height': 'calc(100vh - 80px)' }} id='mapid'></div>
-		</div>);
-	} Q
+		</div>)
+	}
 }

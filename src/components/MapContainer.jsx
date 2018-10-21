@@ -1,9 +1,23 @@
 import React from 'react';
 const L = require('leaflet');
-const iconRetinaUrl = require('../assets/images/marker-icon-2x.png');
-const iconUrl = require('../assets/images/marker-icon.png');
-const shadowUrl = require('../assets/images/marker-shadow.png');
+let iconRetinaUrl = require('../assets/images/mountain.png');
+let iconUrl = require('../assets/images/mountain.png');
+let shadowUrl = require('../assets/images/mountain.png');
 const iconDefault = L.icon({
+	iconRetinaUrl,
+	iconUrl,
+	shadowUrl,
+	iconSize: [41, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	tooltipAnchor: [16, -28],
+	shadowSize: [41, 41]
+});
+
+iconRetinaUrl = require('../assets/images/marker-icon-2x.png');
+iconUrl = require('../assets/images/marker-icon.png');
+shadowUrl = require('../assets/images/marker-shadow.png');
+const iconStart = L.icon({
 	iconRetinaUrl,
 	iconUrl,
 	shadowUrl,
@@ -37,6 +51,13 @@ export default class MapContainer extends React.Component {
 			});
 		}
 		if (this.props.coordinates) {
+			L.marker([+this.props.coordinates[0], +this.props.coordinates[1]], {icon: iconStart}).addTo(this.myMap);
+			L.circle([this.props.coordinates[0], this.props.coordinates[1]], {
+				color: 'white',
+				fillColor: 'white',
+				fillOpacity: 0.3,
+				radius: 100000
+			}).addTo(this.myMap);
 			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 100);
 		}
 	}

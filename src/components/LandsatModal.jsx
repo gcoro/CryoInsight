@@ -39,16 +39,9 @@ export default class LandsatModal extends React.Component {
 			>
 				<Modal.Header closeButton style={{ float: 'right', marginBottom: '10px' }} />
 				<Modal.Body style={{ clear: 'both' }}>
-					<div><p>The cryosphere is made up of every body of water that
-						is frozen. It makes up 2.1% of Earth's water reservoirs
-						and it contains 75% of the worlds freshwater. In its
-						maximum extension the cryosphere influences a
-						totality of 68 million km&#178;. In its natural
-						state the cryosphere is mainly static, being that
-						there aren’t substantial
-							influxes and outflows of material during our epoch.</p>
-						
-					</div>
+					{this.props.landsatImagesUrls.map(e =>
+                        <img src={e.url}/>
+                    )}
 				</Modal.Body>
 			</Modal>
 		);

@@ -35,7 +35,11 @@ export default class Header extends React.Component {
                     }}>CryoInsight</p>
                 </div>
                 <div style={{display:'flex',alignItems:'center'}}>
-                    <div id='search-bar' style={{ height: '120px' }}>
+                
+                <img title='Find my location' alt='icon-geolocalize' onClick={this.props.findMyLocation} src={location}
+                        style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
+                        or
+                    <div id='search-bar' style={{ height: '120px', marginLeft:'1.2em'}}>
                         <div >
                             <input id='input-location' name='city' onKeyDown={(e) => this.onKeyUpHandler(e)} style={{
                                 height: '35px', marginRight: '10px', marginTop: '40px',
@@ -52,9 +56,7 @@ export default class Header extends React.Component {
                         }} onBlur={(e) => this.toggleDistrict(e, 'hide')}
                             onChange={this.props.handleInputChange}></input>
                     </div>
-                    or
-                <img title='Find my location' alt='icon-geolocalize' onClick={this.props.findMyLocation} src={location}
-                        style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
+                    
                 </div>
             </div>
         </>;

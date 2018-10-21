@@ -47,7 +47,8 @@ export default class MapContainer extends React.Component {
 	componentDidUpdate() {
 		if (this.props.glaciers) {
 			this.props.glaciers.forEach(element => {
-				L.marker([+element._source.location.lat, +element._source.location.lon], {icon: iconDefault}).addTo(this.myMap);
+				const marker = L.marker([+element._source.location.lat, +element._source.location.lon], { icon: iconDefault }).addTo(this.myMap);
+				marker.bindPopup(`<div><strong>Name:</strong> ${element._source.name || element._source.wgi_glacier_id}<br/><br/><strong>Elevation:</strong> ${element._source.min_elev}mt ~ ${element._source.max_elev}mt<br/></div>`);
 			});
 		}
 		if (this.props.coordinates) {
@@ -58,15 +59,8 @@ export default class MapContainer extends React.Component {
 				fillOpacity: 0.3,
 				radius: 100000
 			}).addTo(this.myMap);
-			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 100);
+			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 10);
 		}
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		/*if ((!this.props.coordinates && nextProps.coordinates) || (!this.props.glaciers && nextProps.glaciers)) return true;
-		else if (!this.props.coordinates && !nextProps.coordinates) return false;
-		else return true;*/
-		return true;
 	}
 
 	render() {

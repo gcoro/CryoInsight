@@ -45,30 +45,38 @@ class App extends React.Component {
       latitude: this.state.coordinates[0],
       longitude: this.state.coordinates[1]
     }
-    const glaciers = await axios.post('http://10.0.1.200:4000/search', payload);
-    console.log(glaciers.data.hits.hits);
-    this.setState({
-      glaciers: glaciers.data.hits.hits
-    });
+    this.findGlaciers(payload);
   }
 
   findMyLocation() {
     console.log("i'm finding your location..")
     if (!navigator || !navigator.geolocation) return;
     let f = pos => {
-      console.log(pos)
       this.setState({
         coordinates: [
           pos.coords.latitude,
           pos.coords.longitude
         ]
-      })
+      });
+      const payload = {
+        distance: '100km',
+        latitude: pos.coords.latitude,
+        longitude: pos.coords.longitude
+      }
+      this.findGlaciers(payload);
     }
-
     let e = function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
-    navigator.geolocation.getCurrentPosition(f, e)
+    navigator.geolocation.getCurrentPosition(f, e);
+  }
+
+  async findGlaciers(payload) {
+    const glaciers = await axios.post('http://10.0.1.200:4000/search', payload);
+    console.log(glaciers.data.hits.hits);
+    this.setState({
+      glaciers: glaciers.data.hits.hits
+    });
   }
 
   render() {
@@ -77,7 +85,7 @@ class App extends React.Component {
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
         findMyLocation={this.findMyLocation.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
-      <MapContainer coordinates={this.state.coordinates} glaciers={this.state.glaciers}/>
+      <MapContainer coordinates={this.state.coordinates} glaciers={this.state.glaciers} />
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
     </>
     );

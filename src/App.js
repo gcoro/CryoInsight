@@ -119,10 +119,10 @@ class App extends React.Component {
         'left': '50%',
         'transform': 'translate(-50%, -50%)', zIndex: '1005', height: '100px', width: '100px'
       }} />}
-      <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
+      <Header drawerIsOpen={this.state.drawerIsOpen} handleOpenModal={this.handleOpenModal.bind(this)}
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
         findMyLocation={this.findMyLocation.bind(this)} />
-      {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
+      {this.state.drawerIsOpen && <Drawer />}
       {this.state.landsatModalIsOpen && this.state.landsatImagesUrls && <LandsatModal show={true} landsatImagesUrls={this.state.landsatImagesUrls} handleOpenLandsatModal={this.handleOpenLandsatModal.bind(this)} />}
       <MapContainer radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)} />
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}

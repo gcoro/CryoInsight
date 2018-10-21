@@ -27,8 +27,6 @@ export default class InfoModal extends React.Component {
 					backgroundColor: 'white',
 					maxHeight: '30em',
 					width: '70%',
-					overflow: 'scroll',
-					overflowX: 'hidden',
 					paddingRight: '30px',
 					paddingLeft: '30px',
 					boxShadow: '10px 5px 20px 6px #0000007a',
@@ -38,14 +36,17 @@ export default class InfoModal extends React.Component {
 				}}
 			>
 				<Modal.Header closeButton style={{ float: 'right', marginBottom: '10px' }} />
-				<Modal.Body style={{ clear: 'both' }}>
-					<div><p>The cryosphere is made up of every body of water that
-						is frozen. It makes up 2.1% of Earth's water reservoirs
-						and it contains 75% of the worlds freshwater. In its
-						maximum extension the cryosphere influences a
-						totality of 68 million km&#178;. In its natural
-						state the cryosphere is mainly static, being that
-						there aren’t substantial
+				<Modal.Body style={{
+					clear: 'both', overflow: 'scroll', overflowX: 'hidden', maxHeight: 'calc(30em - 100px)'
+				}}>
+					<div><strong style={{ fontSize: '2em', textAlign: 'center'}}>The cryosphere</strong>
+						<p>The cryosphere is made up of every body of water that
+							is frozen. It makes up 2.1% of Earth's water reservoirs
+							and it contains 75% of the worlds freshwater. In its
+							maximum extension the cryosphere influences a
+							totality of 68 million km&#178;. In its natural
+							state the cryosphere is mainly static, being that
+							there aren’t substantial
 							influxes and outflows of material during our epoch.</p>
 						<p>The extension of the cryosphere determines the variation of a multitude
 							of factors the most notable being the increment or decrease of temperature.

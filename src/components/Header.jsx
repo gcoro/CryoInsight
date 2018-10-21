@@ -20,11 +20,11 @@ export default class Header extends React.Component {
 				background: 'dodgerblue', height: '80px',
 				display: 'flex', justifyContent: 'space-between', alignItems: 'center'
 			}}>
-				<button onClick={this.props.handleOpenDrawer} style={{
+				<button onClick={e => this.props.handleOpenModal('open')} style={{
 					color: 'white', background: 'none',
 					border: 'none', outline: 'none', fontSize: '30px', paddingLeft: '10px'
 				}}>
-						<i className="fas fa-info-circle"></i>
+					<i className="fas fa-info-circle"></i>
 				</button>
 				<div id='title' style={{ display: 'flex', flexDirection: 'row' }}>
 					<img alt='logo' src={logo}></img>
@@ -37,7 +37,7 @@ export default class Header extends React.Component {
 
 					<img title='Find my location' alt='icon-geolocalize' onClick={this.props.findMyLocation} src={location}
 						style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
-                    <div id='search-bar' style={{ height: '120px', marginLeft: '1.2em' }}>
+					<div id='search-bar' style={{ height: '120px', marginLeft: '1.2em' }}>
 						<div >
 							<input id='input-location' name='city' onKeyDown={(e) => this.onKeyUpHandler(e)} style={{
 								height: '35px', marginRight: '10px', marginTop: '40px',

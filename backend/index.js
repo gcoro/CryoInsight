@@ -94,10 +94,11 @@ const init = async () => {
 				}
 				await client.indices.create({ index: "glaciers" });
 				await client.indices.putMapping({ index: "glaciers", type: "glacier", body: body });
+				// we must split the indexing operation in multiple batches because it is impossible 
+				// for the http API of elasticsearch to handle such a large volume of data in a single operation
 				var elementNumberForBatchOperation = 200;
 				var numberofTransactions = Math.floor(jsonObj.length / elementNumberForBatchOperation) + 1;
 				var insertions = 0;
-				console.log(jsonObj[12]);
 				for (var i = 0; i < numberofTransactions; i++) {
 					var bulkInsertObj = [];
 					for (var z = 0; z < elementNumberForBatchOperation && (i * elementNumberForBatchOperation + z < jsonObj.length); z++) {

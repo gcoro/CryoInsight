@@ -42,13 +42,6 @@ export default class MapContainer extends React.Component {
 		}
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		/*if ((!this.props.coordinates && nextProps.coordinates) || (!this.props.glaciers && nextProps.glaciers)) return true;
-		else if (!this.props.coordinates && !nextProps.coordinates) return false;
-		else return true;*/
-		return true;
-	}
-
 	render() {
 		return (<div className='map-container'>
 			<div style={{ 'height': 'calc(100vh - 80px)' }} id='mapid'></div>

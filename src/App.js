@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Drawer from './components/Drawer';
 import MapContainer from './components/MapContainer';
 import InfoModal from './components/InfoModal';
+import LandsatModal from './components/LandsatModal';
 import axios from 'axios';
 
 class App extends React.Component {
@@ -15,7 +16,8 @@ class App extends React.Component {
       adminDistrict: undefined,
       coordinates: undefined,
       glaciers: undefined,
-      LandsatImagesUrls:undefined,
+      landsatImagesUrls:undefined,
+      landsatModalIsOpen: false
     }
   }
 
@@ -27,6 +29,11 @@ class App extends React.Component {
   handleOpenModal(action) {
     if (action === 'close') this.setState({ infoModalIsOpen: false });
     else this.setState({ infoModalIsOpen: true });
+  }
+
+  handleOpenLandsatModal(action) {
+    if (action === 'close') this.setState({ landsatModalIsOpen: false });
+    else this.setState({ landsatModalIsOpen: true });
   }
 
   handleInputChange({ target }) {
@@ -80,13 +87,13 @@ class App extends React.Component {
   }
   async showEvolution(e){
       let coord = e._source.location;
-      let LandsatImagesUrls = [];
+      let landsatImagesUrls = [];
       try{
       for(let i = 1; i<=5; ++i){
         let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery?lon=${coord.lon}&lat=${coord.lat}&date=${2018-i}-05-01&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`)
-        LandsatImagesUrls.push(a.data)
+        landsatImagesUrls.push(a.data)
       }
-      this.setState({LandsatImagesUrls})
+      this.setState({landsatImagesUrls})
     }
     catch(err) {
         console.log(err)
@@ -99,7 +106,7 @@ class App extends React.Component {
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
         findMyLocation={this.findMyLocation.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
-      {this.state.LandsatImagesUrls && alert("url recuperati")}
+      {this.state.landsatModalIsOpen && this.state.landsatImagesUrls && <LandsatModal show={true} handleOpenLandsatModal={this.handleOpenLandsatModal.bind(this)} />}
       <MapContainer coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)}/>
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
     </>

@@ -136,6 +136,9 @@ export default class MapContainer extends React.Component {
 	}
 }
 
+
+// the code that will follow is adapted from https://github.com/aparshin/leaflet-GIBS
+
 var s2 = function (num) { return num < 10 ? '0' + num : num; },
 	GIBS_ATTRIBUTION = '<a href="https://earthdata.nasa.gov/gibs">NASA EOSDIS GIBS</a>';
 

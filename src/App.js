@@ -16,7 +16,7 @@ class App extends React.Component {
       adminDistrict: undefined,
       coordinates: undefined,
       glaciers: undefined,
-      landsatImagesUrls:undefined,
+      landsatImagesUrls: undefined,
       landsatModalIsOpen: false,
       radius: 100
     }
@@ -86,21 +86,21 @@ class App extends React.Component {
       glaciers: glaciers.data.hits.hits
     });
   }
-  async showEvolution(e){
-      let coord = e._source.location;
-      let landsatImagesUrls = [];
-      this.setState({
-          landsatModalIsOpen: true
-      })
-      try{
-      for(let i = 1; i<=5; ++i){
-        let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery?lon=${coord.lon}&lat=${coord.lat}&date=${2018-i}-05-01&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`)
+  async showEvolution(e) {
+    let coord = e._source.location;
+    let landsatImagesUrls = [];
+    this.setState({
+      landsatModalIsOpen: true
+    })
+    try {
+      for (let i = 1; i <= 5; ++i) {
+        let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery?lon=${coord.lon}&lat=${coord.lat}&date=${2018 - i}-05-01&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`)
         landsatImagesUrls.push(a.data)
       }
-      this.setState({landsatImagesUrls})
+      this.setState({ landsatImagesUrls })
     }
-    catch(err) {
-        console.log(err)
+    catch (err) {
+      console.log(err)
     }
   }
 
@@ -117,7 +117,7 @@ class App extends React.Component {
         findMyLocation={this.findMyLocation.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
       {this.state.landsatModalIsOpen && this.state.landsatImagesUrls && <LandsatModal show={true} handleOpenLandsatModal={this.handleOpenLandsatModal.bind(this)} />}
-      <MapContainer radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)}/>
+      <MapContainer radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)} />
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
       <div className="slider-container" style={{
         'position': 'fixed',
@@ -125,7 +125,9 @@ class App extends React.Component {
         'right': '50px',
         'zIndex': '1003',
         'backgroundColor': 'rgba(0,0,0,0.4)',
-        'color': 'white'
+        'color': 'white',
+        'borderRadius': '1em',
+        'padding': '0.5em'
       }}><div>
           {this.state.radius + 'km'}
         </div>

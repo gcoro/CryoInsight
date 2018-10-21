@@ -63,6 +63,7 @@ const searchGlacier = async (request, response) => {
 
 const init = async () => {
 	await server.start();
+	// write your csv file path here
 	const csvFilePath = '/home/davide/SpaceApp/cryoinsight-project/backend/wgi_feb2012.csv';
 	const csv = require('csvtojson');
 	const jsonObj = await csv().fromFile(csvFilePath);
@@ -79,6 +80,7 @@ const init = async () => {
 		} else {
 			console.log('Elasticsearch is well, recreating the glacier index');
 			try {
+				// until we have no need to keep persistence of the data, we delete the entire index and we recreate it
 				await client.indices.delete({ index: '_all' });
 				var body = {
 					glacier: {
@@ -118,7 +120,6 @@ const init = async () => {
 							}
 						]);
 					}
-					//concurrent inserts are desiderable in this case
 					await client.bulk({ body: bulkInsertObj });
 				}
 				console.log('Index recreated succesfuly, inserted ' + insertions + ' elements');

@@ -5,6 +5,7 @@ import MapContainer from './components/MapContainer';
 import InfoModal from './components/InfoModal';
 import LandsatModal from './components/LandsatModal';
 import axios from 'axios';
+const loader = require('./assets/images/loader.gif');
 
 class App extends React.Component {
   constructor() {
@@ -16,9 +17,10 @@ class App extends React.Component {
       adminDistrict: undefined,
       coordinates: undefined,
       glaciers: undefined,
-      landsatImagesUrls:undefined,
+      landsatImagesUrls: undefined,
       landsatModalIsOpen: false,
-      radius: 100
+      radius: 100,
+      isLoading: false
     }
   }
 
@@ -87,19 +89,19 @@ class App extends React.Component {
     });
   }
 
-  async showEvolution(e){
-      let coord = e._source.location;
-      let landsatImagesUrls = [];
-      this.setState({landsatImagesUrls,landsatModalIsOpen: true})
-      try{
-      for(let i = 1; i<=5; ++i){
-        let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery?lon=${coord.lon}&lat=${coord.lat}&date=${2018-i}-05-01&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`)
+  async showEvolution(e) {
+    let coord = e._source.location;
+    let landsatImagesUrls = [];
+    this.setState({ landsatImagesUrls, landsatModalIsOpen: true, isLoading: true })
+    try {
+      for (let i = 1; i <= 5; ++i) {
+        let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery?lon=${coord.lon}&lat=${coord.lat}&date=${2018 - i}-05-01&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`)
         landsatImagesUrls.push(a.data)
       }
-      this.setState({landsatImagesUrls})
+      this.setState({ landsatImagesUrls, isLoading: false })
     }
-    catch(err) {
-        console.log(err)
+    catch (err) {
+      console.log(err)
     }
   }
 
@@ -110,13 +112,14 @@ class App extends React.Component {
   }
 
   render() {
-    return (<>{}
+    return (<>{this.state.isLoading && <img src={loader} alt='loader gif'
+      style={{ position: 'absolute', top: '50%', left: '50%', zIndex: '1005', height: '100px', width: '100px' }} />}
       <Header handleOpenDrawer={this.handleOpenDrawer.bind(this)} drawerIsOpen={this.state.drawerIsOpen}
         handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
         findMyLocation={this.findMyLocation.bind(this)} />
       {this.state.drawerIsOpen && <Drawer handleOpenModal={this.handleOpenModal.bind(this)} />}
       {this.state.landsatModalIsOpen && this.state.landsatImagesUrls && <LandsatModal show={true} landsatImagesUrls={this.state.landsatImagesUrls} handleOpenLandsatModal={this.handleOpenLandsatModal.bind(this)} />}
-      <MapContainer radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)}/>
+      <MapContainer radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)} />
       {this.state.infoModalIsOpen && <InfoModal show={true} handleOpenModal={this.handleOpenModal.bind(this)} />}
       <div className="slider-container" style={{
         'position': 'fixed',

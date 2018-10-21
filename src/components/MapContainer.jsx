@@ -45,9 +45,9 @@ export default class MapContainer extends React.Component {
 	}
 
 	componentDidUpdate() {
-		if (this.props.glaciers) {
+		if (this.props.coordinates) {
 			this.myMap.remove();
-			L = require('leaflet');
+			// L = require('leaflet');
 			this.myMap = L.map('mapid');
 			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 10);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -56,18 +56,18 @@ export default class MapContainer extends React.Component {
 				id: 'mapbox.satellite',
 				accessToken: 'pk.eyJ1IjoidHJleHkiLCJhIjoiY2puaGY5aHh5MGRlcjNwcXpkY204cnlnYiJ9.YlB5RoXU8xIZUuAwBdgVFQ'
 			}).addTo(this.myMap);
-			this.props.glaciers.forEach(element => {
-				const marker = L.marker([+element._source.location.lat, +element._source.location.lon], { icon: iconDefault }).addTo(this.myMap);
-				marker.bindPopup(`<div><strong>Name:</strong> ${element._source.name || element._source.wgi_glacier_id}<br/><br/><strong>Elevation:</strong> ${element._source.min_elev}mt ~ ${element._source.max_elev}mt<br/></div>`);
-			});
-		}
-		if (this.props.coordinates) {
 			L.marker([+this.props.coordinates[0], +this.props.coordinates[1]], { icon: iconStart }).addTo(this.myMap);
 			L.circle([this.props.coordinates[0], this.props.coordinates[1]], {
 				color: 'blue',
 				fillOpacity: 0,
 				radius: 100000
 			}).addTo(this.myMap);
+			if (this.props.glaciers) {
+				this.props.glaciers.forEach(element => {
+					const marker = L.marker([+element._source.location.lat, +element._source.location.lon], { icon: iconDefault }).addTo(this.myMap);
+					marker.bindPopup(`<div><strong>Name:</strong> ${element._source.name || element._source.wgi_glacier_id}<br/><br/><strong>Elevation:</strong> ${element._source.min_elev}mt ~ ${element._source.max_elev}mt<br/></div>`);
+				});
+			}
 		}
 	}
 

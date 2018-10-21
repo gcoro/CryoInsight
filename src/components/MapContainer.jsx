@@ -52,11 +52,10 @@ export default class MapContainer extends React.Component {
 			});
 		}
 		if (this.props.coordinates) {
-			L.marker([+this.props.coordinates[0], +this.props.coordinates[1]], {icon: iconStart}).addTo(this.myMap);
+			L.marker([+this.props.coordinates[0], +this.props.coordinates[1]], { icon: iconStart }).addTo(this.myMap);
 			L.circle([this.props.coordinates[0], this.props.coordinates[1]], {
-				color: 'white',
-				fillColor: 'white',
-				fillOpacity: 0.3,
+				color: 'blue',
+				fillOpacity: 0,
 				radius: 100000
 			}).addTo(this.myMap);
 			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 10);

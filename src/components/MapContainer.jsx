@@ -47,7 +47,6 @@ export default class MapContainer extends React.Component {
 	componentDidUpdate() {
 		if (this.props.coordinates) {
 			this.myMap.remove();
-			// L = require('leaflet');
 			this.myMap = L.map('mapid');
 			this.myMap.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 10);
 			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -72,9 +71,9 @@ export default class MapContainer extends React.Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (!this.props.coordinates || (nextProps.coordinates.toString() !== this.props.coordinates.toString()))
+		if (!this.props.coordinates && nextProps.coordinates || !this.props.coordinates || (!this.props.glaciers && nextProps.glaciers) || this.props.glaciers.length !== nextProps.glaciers.length || (nextProps.coordinates.toString() !== this.props.coordinates.toString()))
 			return true;
-		else return true;
+		else return false;
 	}
 
 	render() {

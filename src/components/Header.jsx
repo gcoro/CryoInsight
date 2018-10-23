@@ -25,8 +25,7 @@ export default class Header extends React.Component {
 				</div>
 				<div style={{
 					display: 'flex', alignItems: 'center', paddingLeft: '10px',
-					flexDirection: 'row',
-					alignItems: 'center'
+					flexDirection: 'row'
 				}}>
 					<i className='fas fa-map-marker-alt'
 						onClick={this.props.findMyLocation}

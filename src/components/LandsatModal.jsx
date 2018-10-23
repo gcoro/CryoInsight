@@ -27,19 +27,20 @@ export default class LandsatModal extends React.Component {
                     backgroundColor: 'white',
                     maxHeight: '30em',
                     width: '70%',
-                    
+
                     boxShadow: '10px 5px 20px 6px #0000007a',
                     height: '60%',
                     borderRadius: '2em',
                     outline: 'none',
                 }}
             >
-                <Modal.Header closeButton style={{ float: 'right', marginBottom: '-20px',marginRight:'0.3em'}} />
-                <Modal.Body style={{clear:'both',display: 'flex', flexDirection: 'row',overflowX: 'scroll'}}>
+                <Modal.Header closeButton style={{ float: 'right', marginBottom: '-20px', marginRight: '0.3em' }} />
+                <Modal.Body style={{ clear: 'both', display: 'flex', flexDirection: 'row', overflowX: 'scroll' }}>
                     {this.props.landsatImagesUrls.map(e =>
                         <span style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                             <p style={{ textAlign: 'center' }}>{e.date.split("T")[0]}</p>
-                            <img style={{ maxWidth: '512px',width:'49vh' }} src={e.url} /></span>
+                            <img style={{ maxWidth: '512px', width: '49vh' }} src={e.url}
+                                alt='glacier seen from satellite' /></span>
                     )}
                 </Modal.Body>
             </Modal>

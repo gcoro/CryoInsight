@@ -83,12 +83,12 @@ export default class MapContainer extends React.Component {
 			"AMSR2 Sea Ice Concentration": group2,
 			"MODIS Terra Sea Ice": group3,
 			"MODIS Aqua Sea Ice": group4,
-			"AMSR2 Snow Water Equivalent":group5
+			"AMSR2 Snow Water Equivalent": group5
 			// more layers
 		};
 
 		// add layer groups to layer switcher control
-		var controlLayers = L.control.layers(baseLayers).addTo(this.myMap);
+		L.control.layers(baseLayers).addTo(this.myMap);
 	}
 	componentDidMount() {
 		this.myMap = L.map('mapid');
@@ -124,7 +124,7 @@ export default class MapContainer extends React.Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (this.props.radius !== nextProps.radius || !this.props.coordinates && nextProps.coordinates || !this.props.coordinates || (!this.props.glaciers && nextProps.glaciers) || this.props.glaciers.length !== nextProps.glaciers.length || (nextProps.coordinates.toString() !== this.props.coordinates.toString()))
+		if (this.props.radius !== nextProps.radius || (!this.props.coordinates && nextProps.coordinates) || !this.props.coordinates || (!this.props.glaciers && nextProps.glaciers) || (this.props.glaciers && this.props.glaciers.length !== nextProps.glaciers.length) || (nextProps.coordinates.toString() !== this.props.coordinates.toString()))
 			return true;
 		else return false;
 	}

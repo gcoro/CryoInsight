@@ -1,60 +1,60 @@
 import React from 'react';
-const logo = require('../assets/images/logo.svg');
-const location = require('../assets/images/location.png');
 
 export default class Header extends React.Component {
 
-	onKeyUpHandler(event) {
+	onKeyDownHandler(event) {
 		const code = event.which || event.keyCode;
 		if (code === 13) this.props.handleSearch();
-	}
-
-	toggleDistrict(e, action) {
-		if (action === 'show') document.getElementById('input-district').style.display = 'block';
-		else document.getElementById('input-district').style.display = 'none';
 	}
 
 	render() {
 		return <>
 			<div className='header' style={{
-				background: 'dodgerblue', height: '80px',
+				background: 'white', height: '5em',
 				display: 'flex', justifyContent: 'space-between', alignItems: 'center'
 			}}>
-				<button onClick={e => this.props.handleOpenModal('open')} style={{
-					color: 'white', background: 'none',
-					border: 'none', outline: 'none', fontSize: '30px', paddingLeft: '10px'
-				}}>
-					<i className="fas fa-info-circle"></i>
-				</button>
-				<div id='title' style={{ display: 'flex', flexDirection: 'row' }}>
-					<img alt='logo' src={logo}></img>
+				<div id='title' style={{ paddingLeft: '10px' }}>
 					<p style={{
-						fontFamily: '\'Niramit\', sans-serif', color: 'white',
-						fontWeight: 'bold', fontSize: '30px', marginTop: '50px', marginLeft: '10px'
+						fontFamily: `'Roboto Mono', monospace`, color: 'black',
+						fontWeight: 'bold', fontSize: '2em', margin: '0'
 					}}>CryoInsight</p>
+					<p style={{
+						fontFamily: `'Roboto Mono', monospace`, color: 'black',
+						fontWeight: 'thin', fontSize: '0.8em', margin: '0', padding: '2px'
+					}}>Discover the cryosphere</p>
 				</div>
-				<div style={{ display: 'flex', alignItems: 'center' }}>
-
-					<img title='Find my location' alt='icon-geolocalize' onClick={this.props.findMyLocation} src={location}
-						style={{ height: '1.6em', marginLeft: '1em', marginRight: '1em', cursor: 'pointer' }} />
-					<div id='search-bar' style={{ height: '120px', marginLeft: '1.2em' }}>
-						<div >
-							<input id='input-location' name='city' onKeyDown={(e) => this.onKeyUpHandler(e)} style={{
-								height: '35px', marginRight: '10px', marginTop: '40px',
-								paddingRight: '30px', paddingLeft: '5px'
-							}} placeholder='City' onChange={this.props.handleInputChange}
-								onFocus={(e) => this.toggleDistrict(e, 'show')} />
-							<i className="fas fa-search" style={{ position: 'relative', right: '35px', cursor: 'pointer' }}
-								onClick={this.props.handleSearch} />
-						</div>
-						<input id='input-district' name='adminDistrict' onKeyDown={(e) => this.onKeyUpHandler(e)}
-							placeholder='District' hidden={true} style={{
-								position: 'relative', top: '10px',
-								height: '35px', marginRight: '10px',
-								paddingRight: '30px', paddingLeft: '5px', zIndex: '1003'
-							}} onBlur={(e) => this.toggleDistrict(e, 'hide')}
-							onChange={this.props.handleInputChange}></input>
-					</div>
+				<div style={{
+					display: 'flex', alignItems: 'center', paddingLeft: '10px',
+					flexDirection: 'row',
+					alignItems: 'center'
+				}}>
+					<i className='fas fa-map-marker-alt'
+						onClick={this.props.findMyLocation}
+						style={{
+							fontSize: '1.5em', marginRight: '1em',
+							cursor: 'pointer', color: 'black'
+						}} />
+					<input id='input-location' name='city'
+						placeholder='City'
+						style={{
+							height: '1.5em', padding: '0.5em',
+							marginRight: '0.3em', width: '12em'
+						}}
+						onChange={this.props.handleInputChange}
+						onKeyDown={(e) => this.onKeyDownHandler(e)}
+					/>
+					<input id='input-district' name='adminDistrict'
+						placeholder='District'
+						style={{
+							height: '1.5em', padding: '0.5em',
+							width: '13.6em'
+						}}
+						onChange={this.props.handleInputChange}
+						onKeyDown={(e) => this.onKeyDownHandler(e)}
+					/>
+					<i className='fas fa-search'
+						style={{ position: 'relative', right: '1.6em', cursor: 'pointer' }}
+						onClick={this.props.handleSearch} />
 				</div>
 			</div>
 		</>;

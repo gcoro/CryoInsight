@@ -68,8 +68,7 @@ class App extends React.Component {
   }
 
   async findGlaciers(payload) {
-    const glaciers = await axios.post('http://10.0.1.200:4000/search', payload);
-    console.log(glaciers.data.hits.hits);
+    const glaciers = await axios.post('http://localhost:4000/search', payload);
     this.setState({
       glaciers: glaciers.data.hits.hits
     });

@@ -9,22 +9,24 @@ The aim is basically to let the user search for all the parts of the cryosphere 
 ### Clone this project 
 
 ```bash
-git clone --depth=1 https://github.com/gcoro/cryoinsight-project.git my-project
+git clone --depth=1 https://github.com/gcoro/cryoinsight-project.git
 ```
 ### Start elasticsearch docker
 
-in the **backend** folder run 
+In the `backend` folder run 
 
 ```bash
-docker compose up
+docker-compose up
 ```
 
-### Start the backend
+### Run the backend
 * change the path of the CSV with the path in your computer in `backend/index.js`
 * in the backend folder run `npm start`
-startup may take a while, once it is finished a message will appear in the console
 
-### Start the frontend
+
+Startup may take a while, once it is finished a message will appear in the console
+
+### Run the frontend
 
 * put your elasticsearch ip in the `findGlaciers`call in `App.js`
 * in the main folder run `npm start`

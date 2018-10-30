@@ -21,3 +21,51 @@ body {
 #sidebar button:hover {
   color: blue;
 }
+
+/* Radius Slider */
+
+.radius-slider-container {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 1003;
+  background-color: rgba(0,0,0,0.4);
+  color: #fff;
+  border-radius: 1em;
+  padding: 0.5em;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.radius-slider {
+  -webkit-appearance: none;
+  width: 200px;
+  height: 5px;
+  border-radius: 5px;   
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.radius-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; 
+  background: #fff;
+  cursor: pointer;
+}
+
+.radius-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}

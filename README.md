@@ -4,29 +4,38 @@ This web app was initially developed for an hackathon competition.
 
 The aim is basically to let the user search for all the parts of the cryosphere that exist in the world (glaciers, areas of permafrost, snowpack, ice sheet, etc.) and discover information and images about them.
 
-## Getting started
+## Installation instructions
 
 ### Clone this project 
 
-```bash
+```
 git clone --depth=1 https://github.com/gcoro/cryoinsight-project.git
 ```
-### Start elasticsearch docker
 
-In the `backend` folder run 
+### Start Elasticsearch docker
 
-```bash
+```
+cd cryoinsight-project
 docker-compose up
 ```
 
 ### Run the backend
-* change the path of the CSV with the path in your computer in `backend/index.js`
-* in the backend folder run `npm start`
+If you cloned this project in a different path from your home folder, you need to modify the file `backend/index.js`, assigning the variable `csvFilePath` the current path to your repository.
 
+Then move to the backend folder and run it
+```bash
+cd backend
+npm start
+```
 
-Startup may take a while, once it is finished a message will appear in the console
+Note that startup may take a while, once it is finished a message will appear in the console.
 
 ### Run the frontend
 
-* put your elasticsearch ip in the `findGlaciers`call in `App.js`
-* in the main folder run `npm start`
+Now go back in the main folder and run the frontend
+```bash
+cd ..
+npm start
+```
+
+You will now be able to navigate the project at the address `http://localhost:3000/`.

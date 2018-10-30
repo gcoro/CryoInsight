@@ -211,7 +211,7 @@ var GIBSLayerCanvas = GIBSGridLayer.extend({
 		this._layerInfo = L.GIBS_LAYERS[layerName];
 
 		if (!this._layerInfo) {
-			throw "Unknown GIBS layer name";
+			throw new Error('Unknown GIBS layer name');
 		}
 
 		L.Util.setOptions(this, { maxZoom: this._layerInfo.zoom });
@@ -366,7 +366,7 @@ L.GIBSLayer = function (gibsID, options) {
 	var layerInfo = L.GIBS_LAYERS[gibsID];
 
 	if (!layerInfo) {
-		throw "Unknown GIBS layer name";
+		throw new Error('Unknown GIBS layer name');
 	}
 
 	options = options || {};

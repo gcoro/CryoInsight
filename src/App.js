@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
-import MapContainer from './components/MapContainer';
+import Map from './components/Map';
 import LandsatModal from './components/LandsatModal';
 import axios from 'axios';
 import RadiusSlider from './components/RadiusSlider';
@@ -120,7 +120,7 @@ class App extends React.Component {
 				handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
 				findMyLocation={this.findMyLocation.bind(this)} />
 			{this.state.landsatModalIsOpen && this.state.landsatImagesUrls && <LandsatModal show={true} landsatImagesUrls={this.state.landsatImagesUrls} handleOpenLandsatModal={this.handleOpenLandsatModal.bind(this)} />}
-			<MapContainer radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)} />
+			<Map radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)} />
 			{this.state.showRadiusSlider && <RadiusSlider radius={this.state.radius} changeRadius={this.changeRadius.bind(this)} />}
 		</>
 		);

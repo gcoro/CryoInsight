@@ -1,5 +1,6 @@
-import * as React from 'react';
 import { Modal } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export default class InfoModal extends React.Component {
 
@@ -39,7 +40,7 @@ export default class InfoModal extends React.Component {
 				<Modal.Body style={{
 					clear: 'both', overflow: 'scroll', overflowX: 'hidden', maxHeight: 'calc(30em - 100px)'
 				}}>
-					<div><strong style={{ fontSize: '2em', textAlign: 'center'}}>The cryosphere</strong>
+					<div><strong style={{ fontSize: '2em', textAlign: 'center' }}>The cryosphere</strong>
 						<p>The cryosphere is made up of every body of water that
 							is frozen. It makes up 2.1% of Earth's water reservoirs
 							and it contains 75% of the worlds freshwater. In its
@@ -57,7 +58,7 @@ export default class InfoModal extends React.Component {
 								much material gain or loss.</p>
 						<p>Unfortunately the current human activity has increased the velocity
 							with which the ice caps are melting - so, rather than being in their normal static state,
-							 they are melting at a really worrying rate.
+				 they are melting at a really worrying rate.
 							 In the 1800 there were only 270 CO<sub>2</sub> parts per million (ppm),
 								while in 2018 we have reached an all-time high of 420 ppm.</p>
 						<p>In 2015 the most important heads of state united in a council
@@ -77,3 +78,8 @@ export default class InfoModal extends React.Component {
 		);
 	}
 }
+
+InfoModal.propTypes = {
+	show: PropTypes.bool,
+	handleOpenModal: PropTypes.func
+};

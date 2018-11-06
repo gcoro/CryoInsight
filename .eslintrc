@@ -6,5 +6,32 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended"
-    ]
+    ],
+    "rules": {
+        "semi": [
+            1,
+            "always"
+        ],
+        "quotes": [
+            1,
+            "single"
+        ],
+        "sort-imports": [
+            1,
+            {
+                "ignoreCase": false,
+                "ignoreMemberSort": false,
+                "memberSyntaxSortOrder": [
+                    "none",
+                    "all",
+                    "multiple",
+                    "single"
+                ]
+            }
+        ],
+        "indent": [
+            1,
+            "tab"
+        ]
+    }
 }

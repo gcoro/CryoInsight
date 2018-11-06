@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Header extends React.Component {
@@ -15,11 +16,11 @@ export default class Header extends React.Component {
 			}}>
 				<div id='title' style={{ paddingLeft: '10px' }}>
 					<p style={{
-						fontFamily: `'Roboto Mono', monospace`, color: 'black',
+						fontFamily: '\'Roboto Mono\', monospace', color: 'black',
 						fontWeight: 'bold', fontSize: '2em', margin: '0'
 					}}>CryoInsight</p>
 					<p style={{
-						fontFamily: `'Roboto Mono', monospace`, color: 'black',
+						fontFamily: '\'Roboto Mono\', monospace', color: 'black',
 						fontWeight: 'thin', fontSize: '0.8em', margin: '0', padding: '2px'
 					}}>Discover the cryosphere</p>
 				</div>
@@ -60,3 +61,9 @@ export default class Header extends React.Component {
 	}
 
 }
+
+Header.propTypes = {
+	handleSearch: PropTypes.func,
+	findMyLocation: PropTypes.func,
+	handleInputChange: PropTypes.func
+};

@@ -99,7 +99,7 @@ class App extends React.Component {
 			this.setState({ landsatImagesUrls, isLoading: false })
 		}
 		catch (err) {
-			console.log(err)
+			console.log(err);
 		}
 	}
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import './RadiusSlider.scss';
 
 export default class RadiusSlider extends React.Component {
     render() {

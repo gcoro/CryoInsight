@@ -1,8 +1,8 @@
 import React from 'react';
 import leafletWrapper from 'gibs-map/lib';
-let iconRetinaUrl = require('../assets/images/mountain.png');
-let iconUrl = require('../assets/images/mountain.png');
-let shadowUrl = require('../assets/images/mountain.png');
+let iconRetinaUrl = require('../../assets/images/mountain.png');
+let iconUrl = require('../../assets/images/mountain.png');
+let shadowUrl = require('../../assets/images/mountain.png');
 let L = require('leaflet');
 		
 const iconDefault = L.icon({
@@ -16,9 +16,9 @@ const iconDefault = L.icon({
 	shadowSize: [41, 41]
 });
 
-iconRetinaUrl = require('../assets/images/marker-icon-2x.png');
-iconUrl = require('../assets/images/marker-icon.png');
-shadowUrl = require('../assets/images/marker-shadow.png');
+iconRetinaUrl = require('../../assets/images/marker-icon-2x.png');
+iconUrl = require('../../assets/images/marker-icon.png');
+shadowUrl = require('../../assets/images/marker-shadow.png');
 const iconStart = L.icon({
 	iconRetinaUrl,
 	iconUrl,

@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './components/Header';
-import Map from './components/Map';
-import LandsatModal from './components/LandsatModal';
+import Header from './components/Header/Header';
+import Map from './components/Map/Map';
+import LandsatModal from './components/LandsatModal/LandsatModal';
 import axios from 'axios';
-import RadiusSlider from './components/RadiusSlider';
+import RadiusSlider from './components/RadiusSlider/RadiusSlider';
 const loader = require('./assets/images/loader.gif');
 
 class App extends React.Component {

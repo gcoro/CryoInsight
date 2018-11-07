@@ -1,0 +1,48 @@
+.landsat-modal {
+  background-color: #fff;
+  border-radius: 2px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1002;
+  height: auto;
+  width: 80%;
+  box-shadow: 10px 5px 20px 6px #0000007a;
+  outline: none;
+  .modal-content {
+    .modal-header {
+      button {
+        background-color: #fff;
+        border: none;
+        font-size: 45px;
+        color: #000;
+        outline: none;
+        cursor: pointer;
+        float: right;
+        margin-right: 5px;
+      }
+    }
+    .modal-body {
+      padding: 15px;
+      clear: both;
+      display: flex;
+      flex-direction: row;
+      overflow-x: scroll;
+      .landsat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 10px;
+        img {
+          width: 50vh;
+          max-width: 500px;
+        }
+        p {
+          text-align: center;
+        }
+      }
+    }
+  }
+}

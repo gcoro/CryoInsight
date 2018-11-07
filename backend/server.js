@@ -1,6 +1,6 @@
 const Hapi = require('hapi');
-const csvtojsonV2 = require("csvtojson");
 var elasticsearch = require('elasticsearch');
+const csv = require('csvtojson');
 
 const server = Hapi.server({
 	port: 4000, routes: { cors: { origin: ['http://*'] } }
@@ -10,7 +10,6 @@ server.route({
 	method: 'POST',
 	path: '/search',
 	handler: (request, h) => {
-
 		return searchGlacier(request, h);
 	}
 });
@@ -64,8 +63,7 @@ const searchGlacier = async (request, response) => {
 const init = async () => {
 	await server.start();
 	// write your csv file path here
-	const csvFilePath = '/home/davide/SpaceApp/cryoinsight-project/backend/wgi_feb2012.csv';
-	const csv = require('csvtojson');
+	const csvFilePath = '~/cryoinsight-project/backend/wgi_feb2012.csv';
 	const jsonObj = await csv().fromFile(csvFilePath);
 	var client = new elasticsearch.Client({
 		host: 'localhost:9200',
@@ -130,11 +128,9 @@ const init = async () => {
 	});
 	console.log(`Server running at: ${server.info.uri}`);
 	return (jsonObj);
-
 };
 
 process.on('unhandledRejection', (err) => {
-
 	console.log(err);
 	process.exit(1);
 });

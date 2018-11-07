@@ -11,6 +11,6 @@
     "hapi": "^17.6.0"
   },
   "scripts": {
-    "start": "npm install && node index.js"
+    "start": "node server.js"
   }
 }

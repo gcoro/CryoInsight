@@ -32,6 +32,9 @@
         "indent": [
             1,
             "tab"
+        ],
+        "no-console": [
+            1
         ]
     }
 }

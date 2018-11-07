@@ -1,10 +1,11 @@
-import React from 'react';
+import './App.scss';
 import Header from './components/Header/Header';
-import Map from './components/Map/Map';
 import LandsatModal from './components/LandsatModal/LandsatModal';
-import axios from 'axios';
+import Loader from './components/Loader/Loader';
+import Map from './components/Map/Map';
 import RadiusSlider from './components/RadiusSlider/RadiusSlider';
-const loader = require('./assets/images/loader.gif');
+import React from 'react';
+import axios from 'axios';
 
 class App extends React.Component {
 	constructor() {
@@ -14,12 +15,12 @@ class App extends React.Component {
 			adminDistrict: undefined,
 			coordinates: undefined,
 			glaciers: undefined,
-			landsatImagesUrls: undefined,
+			landsatImages: undefined,
 			landsatModalIsOpen: false,
 			radius: 100,
 			isLoading: false,
 			showRadiusSlider: false
-		}
+		};
 	}
 
 	handleOpenLandsatModal(action) {
@@ -33,18 +34,21 @@ class App extends React.Component {
 
 	async handleSearch() {
 		try {
-			const response = await axios.get(`http://dev.virtualearth.net/REST/v1/Locations?locality=${this.state.city}&adminDistrict=${this.state.adminDistrict || ''}&key=Atn87LNT3ti0O7t2_xkALsJ3XcpZs8oCEP0C1Ppj3j13GBNEqtEaeWXteOkTf9rI`)
-			console.log(response.data.resourceSets[0].resources); // this are ALL the matching resulting cities
+			const response = await axios.get(`http://dev.virtualearth.net/REST/v1/
+			Locations?locality=${this.state.city}&adminDistrict=${this.state.adminDistrict || ''}
+			&key=Atn87LNT3ti0O7t2_xkALsJ3XcpZs8oCEP0C1Ppj3j13GBNEqtEaeWXteOkTf9rI`);
+			// in console.log are ALL the matching resulting cities, we will only use the first one
+			console.log(response.data.resourceSets[0].resources);
 			if (response.data.resourceSets[0].resources[0]) {
 				this.setState({
 					coordinates: response.data.resourceSets[0].resources[0].point.coordinates,
 					showRadiusSlider: true
 				});
 				const payload = {
-					distance: (this.state.radius || 100) + 'km',
+					distance: (this.state.radius) + 'km',
 					latitude: this.state.coordinates[0],
 					longitude: this.state.coordinates[1]
-				}
+				};
 				this.findGlaciers(payload);
 			}
 		}
@@ -63,15 +67,15 @@ class App extends React.Component {
 				]
 			});
 			const payload = {
-				distance: (this.state.radius || 100) + 'km',
+				distance: (this.state.radius) + 'km',
 				latitude: pos.coords.latitude,
 				longitude: pos.coords.longitude
-			}
+			};
 			this.findGlaciers(payload);
-		}
+		};
 		let e = function error(err) {
 			console.error('An error occurred while trying to get your position.');
-		}
+		};
 		navigator.geolocation.getCurrentPosition(f, e);
 	}
 
@@ -89,40 +93,38 @@ class App extends React.Component {
 
 	async showEvolution(e) {
 		let coord = e._source.location;
-		let landsatImagesUrls = [];
-		this.setState({ landsatImagesUrls, landsatModalIsOpen: true, isLoading: true })
+		let landsatImages = [];
+		this.setState({ landsatImages, landsatModalIsOpen: true, isLoading: true });
 		try {
 			for (let i = 1; i <= 5; ++i) {
-				let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery?lon=${coord.lon}&lat=${coord.lat}&date=${2018 - i}-05-01&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`)
-				landsatImagesUrls.push(a.data)
+				let a = await axios.get(`https://api.nasa.gov/planetary/earth/imagery
+				?lon=${coord.lon}&lat=${coord.lat}&date=${2018 - i}-05-01
+				&dim=0.1&api_key=mV82IUCJV38NkPI9lOMvAEGOLD6Q8btvkFjGJf3S`);
+				landsatImages.push(a.data);
 			}
-			this.setState({ landsatImagesUrls, isLoading: false })
+			this.setState({ landsatImages, isLoading: false });
 		}
 		catch (err) {
-			console.log(err);
+			console.error(err);
 		}
 	}
 
-	changeRadius(event) {
-		this.setState({ radius: event.target.value })
-		this.handleSearch()
+	changeRadius(e) {
+		this.setState({ radius: +e.target.value });
+		this.handleSearch();
 	}
 
 	render() {
-		return (<>{this.state.isLoading && <img src={loader} alt='loader gif'
-			style={{
-				'position': 'absolute',
-				'top': '50%',
-				'left': '50%',
-				'transform': 'translate(-50%, -50%)', zIndex: '1005', height: '100px', width: '100px'
-			}} />}
-			<Header
-				handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
-				findMyLocation={this.findMyLocation.bind(this)} />
-			{this.state.landsatModalIsOpen && this.state.landsatImagesUrls && <LandsatModal show={true} landsatImagesUrls={this.state.landsatImagesUrls} handleOpenLandsatModal={this.handleOpenLandsatModal.bind(this)} />}
-			<Map radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)} />
-			{this.state.showRadiusSlider && <RadiusSlider radius={this.state.radius} changeRadius={this.changeRadius.bind(this)} />}
-		</>
+		return (
+			<>{this.state.isLoading && <Loader />}
+				<Header
+					handleInputChange={this.handleInputChange.bind(this)} handleSearch={this.handleSearch.bind(this)}
+					findMyLocation={this.findMyLocation.bind(this)} />
+				{this.state.landsatModalIsOpen && this.state.landsatImages && <LandsatModal show={true} landsatImages={this.state.landsatImages}
+					handleOpenLandsatModal={this.handleOpenLandsatModal.bind(this)} />}
+				<Map radius={this.state.radius} coordinates={this.state.coordinates} glaciers={this.state.glaciers} showEvolution={this.showEvolution.bind(this)} />
+				{this.state.showRadiusSlider && <RadiusSlider radius={this.state.radius} changeRadius={this.changeRadius.bind(this)} />}
+			</>
 		);
 	}
 }

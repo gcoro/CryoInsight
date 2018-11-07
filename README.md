@@ -14,7 +14,7 @@ git clone --depth=1 https://github.com/gcoro/cryoinsight-project.git
 
 ### Start Elasticsearch docker
 
-```
+```bash
 cd cryoinsight-project
 docker-compose up
 ```
@@ -22,9 +22,10 @@ docker-compose up
 ### Run the backend
 If you cloned this project in a different path from your home folder, you need to modify the file `backend/index.js`, assigning the variable `csvFilePath` the current path to your repository.
 
-Then move to the backend folder and run it
+Then move to the backend folder, install the dependencies and run it
 ```bash
 cd backend
+npm install
 npm start
 ```
 
@@ -32,9 +33,10 @@ Note that startup may take a while, once it is finished a message will appear in
 
 ### Run the frontend
 
-Now go back in the main folder and run the frontend
+Now move in the frontend, install the dependencies and run it
 ```bash
-cd ..
+cd ../frontend
+npm install
 npm start
 ```
 

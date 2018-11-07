@@ -20,7 +20,7 @@ docker-compose up
 ```
 
 ### Run the backend
-If you cloned this project in a different path from your home folder, you need to modify the file `backend/index.js`, assigning the variable `csvFilePath` the current path to your repository.
+If you cloned this project in a different path from your home folder, you need to modify the file `backend/server.js`, assigning the variable `csvFilePath` the current path to your repository.
 
 Then move to the backend folder, install the dependencies and run it
 ```bash

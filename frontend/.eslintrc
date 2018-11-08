@@ -4,9 +4,15 @@
         "react"
     ],
     "extends": [
+        "react-app",
         "eslint:recommended",
         "plugin:react/recommended"
     ],
+    "env": {
+        "browser": true,
+        "node": true,
+        "jasmine": true
+    },
     "rules": {
         "semi": [
             1,

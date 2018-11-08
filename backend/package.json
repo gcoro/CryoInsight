@@ -1,14 +1,14 @@
 {
-  "name": "backend",
+  "name": "cryoinsight-backend",
   "version": "1.0.0",
-  "description": "backend for glacier handling and api calls",
-  "main": "index.js",
-  "author": "cryoinsight",
+  "description": "Backend for glacier search handling and API calls",
+  "main": "server.js",
+  "author": "CryoInsight Team",
   "license": "MIT",
   "dependencies": {
-    "csvtojson": "^2.0.8",
-    "elasticsearch": "^15.1.1",
-    "hapi": "^17.6.0"
+    "csvtojson": "2.0.8",
+    "elasticsearch": "15.1.1",
+    "hapi": "17.6.0"
   },
   "scripts": {
     "start": "node server.js"

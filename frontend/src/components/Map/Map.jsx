@@ -110,7 +110,7 @@ export default class Map extends React.Component {
 			this.buildLayers();
 			L.marker([+this.props.coordinates[0], +this.props.coordinates[1]], { icon: iconStart }).addTo(this.myMap);
 			L.circle([this.props.coordinates[0], this.props.coordinates[1]], {
-				color: 'blue',
+				color: 'white',
 				fillOpacity: 0,
 				radius: this.props.radius * 1000
 			}).addTo(this.myMap);

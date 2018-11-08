@@ -1,4 +1,4 @@
-# cryoinsight-project
+# CryoInsight
 
 This web app was initially developed for an hackathon competition. 
 
@@ -15,7 +15,7 @@ git clone --depth=1 https://github.com/gcoro/cryoinsight-project.git
 ### Start Elasticsearch docker
 
 ```bash
-cd cryoinsight-project
+cd CryoInsight
 docker-compose up
 ```
 

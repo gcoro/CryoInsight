@@ -63,7 +63,7 @@ const searchGlacier = async (request, response) => {
 const init = async () => {
 	await server.start();
 	// write your csv file path here
-	const csvFilePath = '~/cryoinsight-project/backend/wgi_feb2012.csv';
+	const csvFilePath = ' ~/CryoInsight/backend/wgi_feb2012.csv';
 	const jsonObj = await csv().fromFile(csvFilePath);
 	var client = new elasticsearch.Client({
 		host: 'localhost:9200',

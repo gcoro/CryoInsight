@@ -1,5 +1,5 @@
 {
-    "name": "cryoinsight-project",
+    "name": "cryoinsight",
     "author": "CryoInsight Team",
     "version": "0.1.0",
     "scripts": {
@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "axios": "0.18.0",
-        "gibs-map": "github:gcoro/gibs-map",
+        "gibs-leaflet": "github:gcoro/gibs-leaflet",
         "leaflet": "1.3.4",
         "prop-types": "15.6.2",
         "react": "16.5.2",

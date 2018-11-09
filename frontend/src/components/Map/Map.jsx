@@ -3,14 +3,14 @@ import { Icon, glacierMarker, positionMarker } from '../../utils/constants';
 import L from 'leaflet';
 import PropTypes from 'prop-types';
 import React from 'react';
-import leafletWrapper from 'gibs-map/lib';
+import GIBSLeaflet from 'gibs-leaflet';
 
 const glacierIcon = new Icon({ iconUrl: glacierMarker, iconSize: [41, 35] }),
 	positionIcon = new Icon({ iconUrl: positionMarker });
 
 export default class Map extends React.Component {
 
-	map = (new leafletWrapper()).getL(L);
+	map = GIBSLeaflet.wrap(L);
 
 	buildLayers() {
 

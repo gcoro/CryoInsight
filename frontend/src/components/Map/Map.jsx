@@ -90,6 +90,9 @@ export default class Map extends React.Component {
 
 	componentDidUpdate() {
 		if (this.props.coordinates) {
+			this.map.eachLayer((layer) => {
+				this.map.removeLayer(layer);
+			});
 			this.map.remove();
 			this.map = L.map('map');
 			this.map.setView(new L.LatLng(this.props.coordinates[0], this.props.coordinates[1]), 8);

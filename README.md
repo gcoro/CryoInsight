@@ -9,7 +9,7 @@ The aim is basically to let the user search for all the parts of the cryosphere 
 ### Clone this project 
 
 ```
-git clone --depth=1 https://github.com/gcoro/cryoinsight-project.git
+git clone --depth=1 https://github.com/gcoro/CryoInsight.git
 ```
 
 ### Start Elasticsearch docker

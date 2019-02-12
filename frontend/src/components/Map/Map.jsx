@@ -30,32 +30,32 @@ export default class Map extends React.Component {
 
 		// define additional layers
 		const layer1 = new L.GIBSLayer('GMI_Snow_Rate_Asc', {
-			date: new Date('2018/04/01'),
+			date: new Date(),
 			transparent: true
 		});
 
-		const layer2 = new L.GIBSLayer('AMSR2_Sea_Ice_Concentration_12km', {
-			date: new Date('2018/04/01'),
+		const layer2 = new L.GIBSLayer('MODIS_Terra_Ice_Surface_Temp_Night', {
+			date: new Date(),
 			transparent: true
 		});
 
 		const layer3 = new L.GIBSLayer('MODIS_Terra_Sea_Ice', {
-			date: new Date('2018/04/01'),
+			date: new Date(),
 			transparent: true
 		});
 
 		const layer4 = new L.GIBSLayer('MODIS_Aqua_Sea_Ice', {
-			date: new Date('2018/04/01'),
+			date: new Date(),
 			transparent: true
 		});
 
-		const layer5 = new L.GIBSLayer('AMSR2_Snow_Water_Equivalent', {
-			date: new Date('2018/04/01'),
+		const layer5 = new L.GIBSLayer('AMSRU2_Sea_Ice_Brightness_Temp_89H', {
+			date: new Date(),
 			transparent: true
 		});
 
 		const layer6 = new L.GIBSLayer('MODIS_Aqua_SurfaceReflectance_Bands721', {
-			date: new Date('2018/04/01'),
+			date: new Date(),
 			transparent: true
 		});
 
@@ -70,10 +70,10 @@ export default class Map extends React.Component {
 		// switcher
 		const baseLayers = {
 			'GMI Snow Rate Asc': group1,
-			'AMSR2 Sea Ice Concentration': group2,
+			'AMSRE Snow Depth Over Ice': group2,
 			'MODIS Terra Sea Ice': group3,
 			'MODIS Aqua Sea Ice': group4,
-			'AMSR2 Snow Water Equivalent': group5,
+			'AMSRU2 Sea Ice Brightness Temp': group5,
 			'MODIS Aqua SurfaceReflectance Bands': group6
 			// more layers
 		};

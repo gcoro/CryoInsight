@@ -19,8 +19,8 @@
     },
     "dependencies": {
         "axios": "0.18.0",
-        "gibs-leaflet": "github:gcoro/gibs-leaflet",
-        "leaflet": "1.3.4",
+        "gibs-leaflet": "1.1.0",
+        "leaflet": "1.4.0",
         "prop-types": "15.6.2",
         "react": "16.5.2",
         "react-dom": "16.5.2"

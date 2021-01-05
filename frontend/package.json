@@ -18,7 +18,7 @@
         ]
     },
     "dependencies": {
-        "axios": "0.18.1",
+        "axios": "0.21.1",
         "gibs-leaflet": "1.1.0",
         "leaflet": "1.4.0",
         "prop-types": "15.6.2",
